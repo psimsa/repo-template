@@ -1,4 +1,4 @@
 {
   "$schema": "./build.schema.json",
-  "Solution": "repo-template.sln"
+  "Solution": "solution.sln"
 }
