@@ -18,10 +18,12 @@ using static Nuke.Common.IO.PathConstruction;
     "Build main",
     GitHubActionsImage.UbuntuLatest,
     OnPushBranches = new[] { "main" },
+    OnPullRequestBranches = new[] { "main" },
     InvokedTargets = new[]
-        { nameof(Clean), nameof(Compile)
-            // , nameof(Pack), nameof(PublishToGitHubNuget), nameof(Publish)
-        },
+    {
+        nameof(Clean), nameof(Compile)
+        // , nameof(Pack), nameof(PublishToGitHubNuget), nameof(Publish)
+    },
     // ImportSecrets = new[] { nameof(NuGetApiKey) },
     EnableGitHubToken = true)]
 class Build : NukeBuild
