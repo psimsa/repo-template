@@ -24,6 +24,9 @@ on:
     branches:
       - main
 
+env:
+  HUSKY: 0
+
 jobs:
   ubuntu-latest:
     name: ubuntu-latest
