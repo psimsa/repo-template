@@ -21,11 +21,13 @@ using static Nuke.Common.IO.PathConstruction;
     OnPullRequestBranches = new[] { "main" },
     InvokedTargets = new[]
     {
-        nameof(Clean), nameof(Compile)
+        nameof(Clean),
+        nameof(Compile),
         // , nameof(Pack), nameof(PublishToGitHubNuget), nameof(Publish)
     },
     // ImportSecrets = new[] { nameof(NuGetApiKey) },
-    EnableGitHubToken = true)]
+    EnableGitHubToken = true
+)]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -36,30 +38,23 @@ class Build : NukeBuild
     public static int Main() => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly Configuration Configuration = IsLocalBuild
+        ? Configuration.Debug
+        : Configuration.Release;
 
-    [Solution(GenerateProjects = true)] readonly Solution Solution;
+    [Solution(GenerateProjects = true)]
+    readonly Solution Solution;
 
     // [Parameter][Secret] readonly string NuGetApiKey;
 
     GitHubActions GitHubActions => GitHubActions.Instance;
 
-    [GitRepository] readonly GitRepository Repository;
+    [GitRepository]
+    readonly GitRepository Repository;
 
-    Target Clean => _ => _
-        .Before(Restore)
-        .Executes(() =>
-        {
-        });
+    Target Clean => _ => _.Before(Restore).Executes(() => { });
 
-    Target Restore => _ => _
-        .Executes(() =>
-        {
-        });
+    Target Restore => _ => _.Executes(() => { });
 
-    Target Compile => _ => _
-        .DependsOn(Restore)
-        .Executes(() =>
-        {
-        });
+    Target Compile => _ => _.DependsOn(Restore).Executes(() => { });
 }
