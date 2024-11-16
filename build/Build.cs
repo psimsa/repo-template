@@ -26,7 +26,8 @@ using static Nuke.Common.IO.PathConstruction;
         // , nameof(Pack), nameof(PublishToGitHubNuget), nameof(Publish)
     },
     // ImportSecrets = new[] { nameof(NuGetApiKey) },
-    EnableGitHubToken = true
+    EnableGitHubToken = true,
+    AutoGenerate = false
 )]
 class Build : NukeBuild
 {
